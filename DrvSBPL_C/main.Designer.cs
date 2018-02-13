@@ -36,6 +36,8 @@
             this.labelPrinterName = new System.Windows.Forms.Label();
             this.Label1 = new System.Windows.Forms.Label();
             this.dataSupply = new System.Windows.Forms.DataGridView();
+            this.label2 = new System.Windows.Forms.Label();
+            this.cmbLabelSize = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataSupply)).BeginInit();
             this.SuspendLayout();
             // 
@@ -73,7 +75,7 @@
             // 
             this.cmdEnd.Font = new System.Drawing.Font("MS UI Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.cmdEnd.ForeColor = System.Drawing.SystemColors.ActiveCaption;
-            this.cmdEnd.Location = new System.Drawing.Point(466, 497);
+            this.cmdEnd.Location = new System.Drawing.Point(466, 501);
             this.cmdEnd.Name = "cmdEnd";
             this.cmdEnd.Size = new System.Drawing.Size(210, 36);
             this.cmdEnd.TabIndex = 4;
@@ -86,7 +88,7 @@
             this.cmdPrint.Enabled = false;
             this.cmdPrint.Font = new System.Drawing.Font("MS UI Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.cmdPrint.ForeColor = System.Drawing.SystemColors.ActiveCaption;
-            this.cmdPrint.Location = new System.Drawing.Point(18, 497);
+            this.cmdPrint.Location = new System.Drawing.Point(18, 501);
             this.cmdPrint.Name = "cmdPrint";
             this.cmdPrint.Size = new System.Drawing.Size(195, 36);
             this.cmdPrint.TabIndex = 3;
@@ -119,18 +121,41 @@
             this.dataSupply.AllowUserToOrderColumns = true;
             this.dataSupply.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.DisplayedCells;
             this.dataSupply.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataSupply.Location = new System.Drawing.Point(18, 96);
+            this.dataSupply.Location = new System.Drawing.Point(17, 111);
             this.dataSupply.Name = "dataSupply";
             this.dataSupply.ReadOnly = true;
             this.dataSupply.RowTemplate.Height = 21;
             this.dataSupply.Size = new System.Drawing.Size(658, 379);
             this.dataSupply.TabIndex = 96;
             // 
+            // label2
+            // 
+            this.label2.Font = new System.Drawing.Font("MS UI Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.label2.Location = new System.Drawing.Point(16, 83);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(152, 25);
+            this.label2.TabIndex = 97;
+            this.label2.Text = "Target label size";
+            // 
+            // cmbLabelSize
+            // 
+            this.cmbLabelSize.Cursor = System.Windows.Forms.Cursors.Default;
+            this.cmbLabelSize.FormattingEnabled = true;
+            this.cmbLabelSize.Items.AddRange(new object[] {
+            "Normal",
+            "Small"});
+            this.cmbLabelSize.Location = new System.Drawing.Point(173, 81);
+            this.cmbLabelSize.Name = "cmbLabelSize";
+            this.cmbLabelSize.Size = new System.Drawing.Size(353, 20);
+            this.cmbLabelSize.TabIndex = 98;
+            // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(688, 545);
+            this.Controls.Add(this.cmbLabelSize);
+            this.Controls.Add(this.label2);
             this.Controls.Add(this.dataSupply);
             this.Controls.Add(this.labelPrinterName);
             this.Controls.Add(this.cmdReference);
@@ -158,6 +183,8 @@
         internal System.Windows.Forms.Label labelPrinterName;
         internal System.Windows.Forms.Label Label1;
         private System.Windows.Forms.DataGridView dataSupply;
+        internal System.Windows.Forms.Label label2;
+        private System.Windows.Forms.ComboBox cmbLabelSize;
     }
 }
 
