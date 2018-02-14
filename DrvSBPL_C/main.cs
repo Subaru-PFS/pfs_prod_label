@@ -43,6 +43,8 @@ namespace DrvSBPL_C
                 {
                     cmdPrint.ForeColor = System.Drawing.Color.LightBlue;
                     cmdPrint.Enabled = false;
+                    cmdPrintSelected.ForeColor = System.Drawing.Color.LightBlue;
+                    cmdPrintSelected.Enabled = false;
                 }
             }
         }
@@ -92,8 +94,8 @@ namespace DrvSBPL_C
         // need to be replaced with loop over supplied (excel?) data
         private void cmdPrint_Click(object sender, EventArgs e)
         {
-            string PrinterName = labelPrinterName.Text;
             cmdPrint.Enabled = false;
+            cmdPrintSelected.Enabled = false;
             string PrintData;
             for (int cId = 0; cId < dataSupply.RowCount; cId++)
             {
@@ -104,6 +106,24 @@ namespace DrvSBPL_C
                 PrintToPrinter(PrintData);
             }
             cmdPrint.Enabled = true;
+            cmdPrintSelected.Enabled = true;
+        }
+
+        private void cmdPrintSelected_Click(object sender, EventArgs e)
+        {
+            cmdPrint.Enabled = false;
+            cmdPrintSelected.Enabled = false;
+            string PrintData;
+            for (int cId = 0; cId < dataSupply.SelectedRows.Count; cId++)
+            {
+                DataGridViewRow cRow = dataSupply.SelectedRows[cId];
+                PrintData = GeneratePrintData(cRow.Cells[0].Value.ToString(),
+                    cRow.Cells[1].Value.ToString(), cRow.Cells[2].Value.ToString(),
+                    cRow.Cells[3].Value.ToString(), cRow.Cells[4].Value.ToString());
+                PrintToPrinter(PrintData);
+            }
+            cmdPrint.Enabled = true;
+            cmdPrintSelected.Enabled = true;
         }
 
         // closing window
@@ -218,6 +238,8 @@ namespace DrvSBPL_C
             if ((cmdPrint.Enabled == false) || (dataSupply.SelectedRows.Count < 1))
             {
                 panelSampleNormal.Visible = false;
+                cmdPrintSelected.ForeColor = System.Drawing.Color.LightBlue;
+                cmdPrintSelected.Enabled = false;
                 return;
             }
             DataGridViewRow curRow = dataSupply.SelectedRows[0];
@@ -227,6 +249,8 @@ namespace DrvSBPL_C
             psId.Text = curRow.Cells[3].Value.ToString();
             psSN.Text = curRow.Cells[4].Value.ToString();
             panelSampleNormal.Visible = true;
+            cmdPrintSelected.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            cmdPrintSelected.Enabled = true;
         }
     }
 }

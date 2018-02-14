@@ -278,6 +278,7 @@
             this.cmdPrintSelected.TabIndex = 102;
             this.cmdPrintSelected.Text = "Print Selected";
             this.cmdPrintSelected.UseVisualStyleBackColor = true;
+            this.cmdPrintSelected.Click += new System.EventHandler(this.cmdPrintSelected_Click);
             // 
             // frmMain
             // 
