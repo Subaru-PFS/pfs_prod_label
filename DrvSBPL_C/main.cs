@@ -213,5 +213,20 @@ namespace DrvSBPL_C
             dataSupply.AutoResizeColumns();
         }
 
+        private void dataSupply_SelectionChanged(object sender, EventArgs e)
+        {
+            if ((cmdPrint.Enabled == false) || (dataSupply.SelectedRows.Count < 1))
+            {
+                panelSampleNormal.Visible = false;
+                return;
+            }
+            DataGridViewRow curRow = dataSupply.SelectedRows[0];
+            psInstitute.Text = curRow.Cells[0].Value.ToString();
+            psCompName.Text = curRow.Cells[1].Value.ToString();
+            psLocalId.Text = curRow.Cells[2].Value.ToString();
+            psId.Text = curRow.Cells[3].Value.ToString();
+            psSN.Text = curRow.Cells[4].Value.ToString();
+            panelSampleNormal.Visible = true;
+        }
     }
 }
