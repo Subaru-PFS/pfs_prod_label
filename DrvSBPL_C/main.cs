@@ -29,7 +29,7 @@ namespace DrvSBPL_C
         {
             OpenFileDialog ofd = new OpenFileDialog();
             ofd.RestoreDirectory = true;
-            ofd.Filter = "CSV with tab (*.csv)|*.csv|All extensions (*.*)|*.*";
+            ofd.Filter = "CSV with tab (*.csv;*.tsv)|*.csv|All extensions (*.*)|*.*";
             ofd.InitialDirectory = txtFileNm.Text;
             if (ofd.ShowDialog() == DialogResult.OK)
             {
