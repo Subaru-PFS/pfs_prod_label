@@ -34,7 +34,16 @@ namespace DrvSBPL_C
             if (ofd.ShowDialog() == DialogResult.OK)
             {
                 txtFileNm.Text = ofd.FileName;
-                LoadLabelData();
+                if (LoadLabelData())
+                {
+                    cmdPrint.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+                    cmdPrint.Enabled = true;
+                }
+                else
+                {
+                    cmdPrint.ForeColor = System.Drawing.Color.LightBlue;
+                    cmdPrint.Enabled = false;
+                }
             }
         }
 
@@ -71,6 +80,10 @@ namespace DrvSBPL_C
             }
             sr.Close();
             dataSupply.AutoResizeColumns();
+            if (curLineId == 0)
+            {
+                return false;
+            }
             return true;
         }
 
@@ -189,10 +202,6 @@ namespace DrvSBPL_C
                 MessageBox.Show("Printer \"" + labelPrinterName.Text + "\" not found", strMessageBox, MessageBoxButtons.OK);
                 labelPrinterName.ForeColor = System.Drawing.Color.Red;
                 cmdPrint.Enabled = false;
-            }
-            else
-            {
-                cmdPrint.Enabled = true;
             }
             dataSupply.ColumnCount = 5;
             dataSupply.Columns[0].Name = "Institute";

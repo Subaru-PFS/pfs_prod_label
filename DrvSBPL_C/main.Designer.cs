@@ -44,7 +44,7 @@
             // cmdReference
             // 
             this.cmdReference.Font = new System.Drawing.Font("MS UI Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.cmdReference.ForeColor = System.Drawing.SystemColors.ActiveCaption;
+            this.cmdReference.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.cmdReference.Location = new System.Drawing.Point(598, 43);
             this.cmdReference.Name = "cmdReference";
             this.cmdReference.Size = new System.Drawing.Size(78, 34);
@@ -74,7 +74,7 @@
             // cmdEnd
             // 
             this.cmdEnd.Font = new System.Drawing.Font("MS UI Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.cmdEnd.ForeColor = System.Drawing.SystemColors.ActiveCaption;
+            this.cmdEnd.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.cmdEnd.Location = new System.Drawing.Point(466, 501);
             this.cmdEnd.Name = "cmdEnd";
             this.cmdEnd.Size = new System.Drawing.Size(210, 36);
@@ -87,7 +87,7 @@
             // 
             this.cmdPrint.Enabled = false;
             this.cmdPrint.Font = new System.Drawing.Font("MS UI Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.cmdPrint.ForeColor = System.Drawing.SystemColors.ActiveCaption;
+            this.cmdPrint.ForeColor = System.Drawing.Color.LightBlue;
             this.cmdPrint.Location = new System.Drawing.Point(18, 501);
             this.cmdPrint.Name = "cmdPrint";
             this.cmdPrint.Size = new System.Drawing.Size(195, 36);
