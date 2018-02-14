@@ -73,6 +73,7 @@ namespace DrvSBPL_C
                         if (clData[cid].Length > sprInputSize[cid])
                         {
                             dataSupply.Rows[curLineId].Cells[cid].Style.ForeColor = System.Drawing.Color.Red;
+                            dataSupply.Rows[curLineId].Cells[cid].Style.SelectionForeColor = System.Drawing.Color.Red;
                         }
                     }
                     curLineId++;
