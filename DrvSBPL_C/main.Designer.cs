@@ -154,7 +154,6 @@
             // cmbLabelSize
             // 
             this.cmbLabelSize.Cursor = System.Windows.Forms.Cursors.Default;
-            this.cmbLabelSize.Enabled = false;
             this.cmbLabelSize.FormattingEnabled = true;
             this.cmbLabelSize.Items.AddRange(new object[] {
             "Normal",

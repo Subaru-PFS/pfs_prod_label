@@ -102,7 +102,8 @@ namespace DrvSBPL_C
                 DataGridViewRow cRow = dataSupply.Rows[cId];
                 PrintData = GeneratePrintData(cRow.Cells[0].Value.ToString(),
                     cRow.Cells[1].Value.ToString(), cRow.Cells[2].Value.ToString(),
-                    cRow.Cells[3].Value.ToString(), cRow.Cells[4].Value.ToString());
+                    cRow.Cells[3].Value.ToString(), cRow.Cells[4].Value.ToString(),
+                    cmbLabelSize.Text);
                 PrintToPrinter(PrintData);
             }
             cmdPrint.Enabled = true;
@@ -119,7 +120,8 @@ namespace DrvSBPL_C
                 DataGridViewRow cRow = dataSupply.SelectedRows[cId];
                 PrintData = GeneratePrintData(cRow.Cells[0].Value.ToString(),
                     cRow.Cells[1].Value.ToString(), cRow.Cells[2].Value.ToString(),
-                    cRow.Cells[3].Value.ToString(), cRow.Cells[4].Value.ToString());
+                    cRow.Cells[3].Value.ToString(), cRow.Cells[4].Value.ToString(),
+                    cmbLabelSize.Text);
                 PrintToPrinter(PrintData);
             }
             cmdPrint.Enabled = true;
@@ -134,7 +136,7 @@ namespace DrvSBPL_C
 
         // Generate byte data to print
         private string GeneratePrintData(string optInstitute, string optCmpName, 
-            string optLocalID, string optProdId, string optSerNo)
+            string optLocalID, string optProdId, string optSerNo, string optSize)
         {
             string PrintData = "";
             // head
@@ -143,31 +145,47 @@ namespace DrvSBPL_C
             PrintData += sprESC + "ID00"; // print sequence ID (not used)
             PrintData += sprESC + "WK" + "PFS"; // job name, up to 16 char
             PrintData += sprESC + "%0"; // print to normal direction
-            // institute
-            PrintData += sprESC + "V0135" + sprESC + "H0105"; // pos
-            PrintData += sprESC + "P00" + sprESC + "L0101"; // font size
-            PrintData += sprESC + "$B,38,88,9" + sprESC + "$="; // font id
-            PrintData += sprInstHead + optInstitute; // data
-            // component name
-            PrintData += sprESC + "V0020" + sprESC + "H0020"; // pos
-            PrintData += sprESC + "P03" + sprESC + "L0101"; // font size
-            PrintData += sprESC + "M"; // font id
-            PrintData += optCmpName; // data
-            // component local ID
-            PrintData += sprESC + "V0050" + sprESC + "H0020"; // pos
-            PrintData += sprESC + "P03" + sprESC + "L0101"; // font size
-            PrintData += sprESC + "M"; // font id
-            PrintData += optLocalID; // data
-            // product ID
-            PrintData += sprESC + "V0090" + sprESC + "H0010"; // pos
-            PrintData += sprESC + "P00" + sprESC + "L0102"; // font size
-            PrintData += sprESC + "X22,"; // font id
-            PrintData += sprProdHead + optProdId; // data
-            // serial number
-            PrintData += sprESC + "V0150" + sprESC + "H0010"; // pos
-            PrintData += sprESC + "P00" + sprESC + "L0102"; // font size
-            PrintData += sprESC + "X22,"; // font id
-            PrintData += sprSeriHead + optSerNo; // data
+            if (optSize == "Normal")
+            {
+                // institute
+                PrintData += sprESC + "V0135" + sprESC + "H0105"; // pos
+                PrintData += sprESC + "P00" + sprESC + "L0101"; // font size
+                PrintData += sprESC + "$B,38,88,9" + sprESC + "$="; // font id
+                PrintData += sprInstHead + optInstitute; // data
+                // component name
+                PrintData += sprESC + "V0020" + sprESC + "H0020"; // pos
+                PrintData += sprESC + "P03" + sprESC + "L0101"; // font size
+                PrintData += sprESC + "M"; // font id
+                PrintData += optCmpName; // data
+                // component local ID
+                PrintData += sprESC + "V0050" + sprESC + "H0020"; // pos
+                PrintData += sprESC + "P03" + sprESC + "L0101"; // font size
+                PrintData += sprESC + "M"; // font id
+                PrintData += optLocalID; // data
+                // product ID
+                PrintData += sprESC + "V0090" + sprESC + "H0010"; // pos
+                PrintData += sprESC + "P00" + sprESC + "L0102"; // font size
+                PrintData += sprESC + "X22,"; // font id
+                PrintData += sprProdHead + optProdId; // data
+                // serial number
+                PrintData += sprESC + "V0150" + sprESC + "H0010"; // pos
+                PrintData += sprESC + "P00" + sprESC + "L0102"; // font size
+                PrintData += sprESC + "X22,"; // font id
+                PrintData += sprSeriHead + optSerNo; // data
+            }
+            else if (optSize == "Small")
+            {
+                // component name
+                PrintData += sprESC + "V0020" + sprESC + "H0020"; // pos
+                PrintData += sprESC + "P02" + sprESC + "L0102"; // font size
+                PrintData += sprESC + "S"; // font id
+                PrintData += optCmpName; // data
+                // product ID
+                PrintData += sprESC + "V0050" + sprESC + "H0010"; // pos
+                PrintData += sprESC + "P00" + sprESC + "L0102"; // font size
+                PrintData += sprESC + "X21,"; // font id
+                PrintData += sprProdHead + optProdId + sprSeriHead + optSerNo; // data
+            }
             // tailer
             PrintData += sprESC + "Q1"; // print quantity, up to 6 numeric
             PrintData += sprESC + "Z" + sprETX; // stop code and end of data
