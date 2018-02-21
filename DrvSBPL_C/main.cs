@@ -96,6 +96,13 @@ namespace DrvSBPL_C
         {
             cmdPrint.Enabled = false;
             cmdPrintSelected.Enabled = false;
+            if (cmbLabelSize.SelectedIndex < 0)
+            {
+                MessageBox.Show("No label size selected", strMessageBox, MessageBoxButtons.OK);
+                cmdPrint.Enabled = true;
+                cmdPrintSelected.Enabled = true;
+                return;
+            }
             string PrintData;
             for (int cId = 0; cId < dataSupply.RowCount; cId++)
             {
@@ -103,7 +110,7 @@ namespace DrvSBPL_C
                 PrintData = GeneratePrintData(cRow.Cells[0].Value.ToString(),
                     cRow.Cells[1].Value.ToString(), cRow.Cells[2].Value.ToString(),
                     cRow.Cells[3].Value.ToString(), cRow.Cells[4].Value.ToString(),
-                    cmbLabelSize.Text);
+                    cmbLabelSize.SelectedItem.ToString());
                 PrintToPrinter(PrintData);
             }
             cmdPrint.Enabled = true;
@@ -114,6 +121,13 @@ namespace DrvSBPL_C
         {
             cmdPrint.Enabled = false;
             cmdPrintSelected.Enabled = false;
+            if (cmbLabelSize.SelectedIndex < 0)
+            {
+                MessageBox.Show("No label size selected", strMessageBox, MessageBoxButtons.OK);
+                cmdPrint.Enabled = true;
+                cmdPrintSelected.Enabled = true;
+                return;
+            }
             string PrintData;
             for (int cId = 0; cId < dataSupply.SelectedRows.Count; cId++)
             {
@@ -121,7 +135,7 @@ namespace DrvSBPL_C
                 PrintData = GeneratePrintData(cRow.Cells[0].Value.ToString(),
                     cRow.Cells[1].Value.ToString(), cRow.Cells[2].Value.ToString(),
                     cRow.Cells[3].Value.ToString(), cRow.Cells[4].Value.ToString(),
-                    cmbLabelSize.Text);
+                    cmbLabelSize.SelectedItem.ToString());
                 PrintToPrinter(PrintData);
             }
             cmdPrint.Enabled = true;
@@ -186,6 +200,10 @@ namespace DrvSBPL_C
                 PrintData += sprESC + "X21,"; // font id
                 PrintData += sprProdHead + optProdId + sprSeriHead + optSerNo; // data
             }
+            else
+            {
+                return "";
+            }
             // tailer
             PrintData += sprESC + "Q1"; // print quantity, up to 6 numeric
             PrintData += sprESC + "Z" + sprETX; // stop code and end of data
@@ -195,6 +213,11 @@ namespace DrvSBPL_C
         // Print byte data
         private bool PrintToPrinter(string PrintData)
         {
+            if (PrintData == "")
+            {
+                MessageBox.Show("Print data error", strMessageBox, MessageBoxButtons.OK);
+                return false;
+            }
             // try to open printer
             try
             {
@@ -249,6 +272,7 @@ namespace DrvSBPL_C
             dataSupply.Columns[3].Name = "Product ID";
             dataSupply.Columns[4].Name = "Serial No";
             dataSupply.AutoResizeColumns();
+            cmbLabelSize.SelectedIndex = 0;
         }
 
         private void dataSupply_SelectionChanged(object sender, EventArgs e)

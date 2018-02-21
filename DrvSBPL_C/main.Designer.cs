@@ -153,7 +153,9 @@
             // 
             // cmbLabelSize
             // 
+            this.cmbLabelSize.BackColor = System.Drawing.SystemColors.Window;
             this.cmbLabelSize.Cursor = System.Windows.Forms.Cursors.Default;
+            this.cmbLabelSize.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbLabelSize.FormattingEnabled = true;
             this.cmbLabelSize.Items.AddRange(new object[] {
             "Normal",
@@ -162,7 +164,6 @@
             this.cmbLabelSize.Name = "cmbLabelSize";
             this.cmbLabelSize.Size = new System.Drawing.Size(353, 20);
             this.cmbLabelSize.TabIndex = 98;
-            this.cmbLabelSize.Text = "Normal";
             // 
             // label3
             // 
