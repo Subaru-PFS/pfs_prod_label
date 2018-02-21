@@ -50,8 +50,13 @@
             this.psCompName = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.cmdPrintSelected = new System.Windows.Forms.Button();
+            this.panelSampleSmall = new System.Windows.Forms.Panel();
+            this.pssId = new System.Windows.Forms.Label();
+            this.pssStaticId = new System.Windows.Forms.Label();
+            this.pssCompName = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataSupply)).BeginInit();
             this.panelSampleNormal.SuspendLayout();
+            this.panelSampleSmall.SuspendLayout();
             this.SuspendLayout();
             // 
             // cmdReference
@@ -164,6 +169,7 @@
             this.cmbLabelSize.Name = "cmbLabelSize";
             this.cmbLabelSize.Size = new System.Drawing.Size(353, 20);
             this.cmbLabelSize.TabIndex = 98;
+            this.cmbLabelSize.SelectedIndexChanged += new System.EventHandler(this.cmbLabelSize_SelectedIndexChanged);
             // 
             // label3
             // 
@@ -260,12 +266,12 @@
             // 
             // label4
             // 
-            this.label4.Font = new System.Drawing.Font("MS UI Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.label4.Font = new System.Drawing.Font("MS UI Gothic", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.label4.Location = new System.Drawing.Point(16, 442);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(124, 22);
+            this.label4.Size = new System.Drawing.Size(124, 11);
             this.label4.TabIndex = 101;
-            this.label4.Text = "(Select Row)";
+            this.label4.Text = "(Last selectd Row)";
             // 
             // cmdPrintSelected
             // 
@@ -280,11 +286,49 @@
             this.cmdPrintSelected.UseVisualStyleBackColor = true;
             this.cmdPrintSelected.Click += new System.EventHandler(this.cmdPrintSelected_Click);
             // 
+            // panelSampleSmall
+            // 
+            this.panelSampleSmall.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panelSampleSmall.Controls.Add(this.pssId);
+            this.panelSampleSmall.Controls.Add(this.pssStaticId);
+            this.panelSampleSmall.Controls.Add(this.pssCompName);
+            this.panelSampleSmall.Location = new System.Drawing.Point(146, 415);
+            this.panelSampleSmall.Name = "panelSampleSmall";
+            this.panelSampleSmall.Size = new System.Drawing.Size(213, 58);
+            this.panelSampleSmall.TabIndex = 103;
+            this.panelSampleSmall.Visible = false;
+            // 
+            // pssId
+            // 
+            this.pssId.Font = new System.Drawing.Font("MS UI Gothic", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.pssId.Location = new System.Drawing.Point(31, 31);
+            this.pssId.Name = "pssId";
+            this.pssId.Size = new System.Drawing.Size(177, 18);
+            this.pssId.TabIndex = 105;
+            // 
+            // pssStaticId
+            // 
+            this.pssStaticId.Font = new System.Drawing.Font("MS UI Gothic", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.pssStaticId.Location = new System.Drawing.Point(3, 31);
+            this.pssStaticId.Name = "pssStaticId";
+            this.pssStaticId.Size = new System.Drawing.Size(31, 18);
+            this.pssStaticId.TabIndex = 103;
+            this.pssStaticId.Text = "ID";
+            // 
+            // pssCompName
+            // 
+            this.pssCompName.Font = new System.Drawing.Font("MS UI Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.pssCompName.Location = new System.Drawing.Point(3, 4);
+            this.pssCompName.Name = "pssCompName";
+            this.pssCompName.Size = new System.Drawing.Size(205, 22);
+            this.pssCompName.TabIndex = 101;
+            // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(688, 545);
+            this.Controls.Add(this.panelSampleSmall);
             this.Controls.Add(this.cmdPrintSelected);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.panelSampleNormal);
@@ -304,6 +348,7 @@
             this.Load += new System.EventHandler(this.frmMain_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataSupply)).EndInit();
             this.panelSampleNormal.ResumeLayout(false);
+            this.panelSampleSmall.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -333,6 +378,10 @@
         internal System.Windows.Forms.Label psCompName;
         internal System.Windows.Forms.Label label4;
         internal System.Windows.Forms.Button cmdPrintSelected;
+        private System.Windows.Forms.Panel panelSampleSmall;
+        internal System.Windows.Forms.Label pssId;
+        internal System.Windows.Forms.Label pssStaticId;
+        internal System.Windows.Forms.Label pssCompName;
     }
 }
 

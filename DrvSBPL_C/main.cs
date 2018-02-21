@@ -277,22 +277,46 @@ namespace DrvSBPL_C
 
         private void dataSupply_SelectionChanged(object sender, EventArgs e)
         {
+            ChangePanelSample();
+        }
+
+        private void cmbLabelSize_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            ChangePanelSample();
+        }
+
+        private bool ChangePanelSample()
+        {
             if ((cmdPrint.Enabled == false) || (dataSupply.SelectedRows.Count < 1))
             {
                 panelSampleNormal.Visible = false;
+                panelSampleSmall.Visible = false;
                 cmdPrintSelected.ForeColor = System.Drawing.Color.LightBlue;
                 cmdPrintSelected.Enabled = false;
-                return;
+                return true;
             }
             DataGridViewRow curRow = dataSupply.SelectedRows[0];
-            psInstitute.Text = curRow.Cells[0].Value.ToString();
-            psCompName.Text = curRow.Cells[1].Value.ToString();
-            psLocalId.Text = curRow.Cells[2].Value.ToString();
-            psId.Text = curRow.Cells[3].Value.ToString();
-            psSN.Text = curRow.Cells[4].Value.ToString();
-            panelSampleNormal.Visible = true;
+            if (cmbLabelSize.SelectedItem.ToString() == "Normal")
+            {
+                psInstitute.Text = curRow.Cells[0].Value.ToString();
+                psCompName.Text = curRow.Cells[1].Value.ToString();
+                psLocalId.Text = curRow.Cells[2].Value.ToString();
+                psId.Text = curRow.Cells[3].Value.ToString();
+                psSN.Text = curRow.Cells[4].Value.ToString();
+                panelSampleNormal.Visible = true;
+                panelSampleSmall.Visible = false;
+            }
+            else
+            {
+                pssCompName.Text = curRow.Cells[1].Value.ToString();
+                pssId.Text = curRow.Cells[3].Value.ToString() + sprSeriHead +
+                    curRow.Cells[4].Value.ToString();
+                panelSampleSmall.Visible = true;
+                panelSampleNormal.Visible = false;
+            }
             cmdPrintSelected.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             cmdPrintSelected.Enabled = true;
+            return true;
         }
     }
 }
