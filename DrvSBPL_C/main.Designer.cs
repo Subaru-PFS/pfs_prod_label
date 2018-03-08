@@ -250,7 +250,7 @@
             // 
             // psLocalId
             // 
-            this.psLocalId.Font = new System.Drawing.Font("MS UI Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.psLocalId.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.psLocalId.Location = new System.Drawing.Point(3, 26);
             this.psLocalId.Name = "psLocalId";
             this.psLocalId.Size = new System.Drawing.Size(205, 22);
@@ -258,7 +258,7 @@
             // 
             // psCompName
             // 
-            this.psCompName.Font = new System.Drawing.Font("MS UI Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.psCompName.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.psCompName.Location = new System.Drawing.Point(3, 4);
             this.psCompName.Name = "psCompName";
             this.psCompName.Size = new System.Drawing.Size(205, 22);

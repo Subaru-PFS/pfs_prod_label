@@ -18,7 +18,8 @@ namespace DrvSBPL_C
         private string sprInstHead = "PFS ";
         private string sprProdHead = "ID ";
         private string sprSeriHead = "#";
-        private int[] sprInputSize = { 5, 18, 18, 8, 3 };
+        private int[] sprInputSize = { 5, 36, 18, 8, 3 };
+        private int NormalTitleLength = 18;
 
         public frmMain()
         {
@@ -167,22 +168,31 @@ namespace DrvSBPL_C
                 PrintData += sprESC + "$B,38,88,9" + sprESC + "$="; // font id
                 PrintData += sprInstHead + optInstitute; // data
                 // component name
-                PrintData += sprESC + "V0020" + sprESC + "H0020"; // pos
-                PrintData += sprESC + "P03" + sprESC + "L0101"; // font size
-                PrintData += sprESC + "M"; // font id
-                PrintData += optCmpName; // data
-                // component local ID
-                PrintData += sprESC + "V0050" + sprESC + "H0020"; // pos
-                PrintData += sprESC + "P03" + sprESC + "L0101"; // font size
-                PrintData += sprESC + "M"; // font id
-                PrintData += optLocalID; // data
+                if (optCmpName.Length > NormalTitleLength)
+                {
+                    PrintData += sprESC + "V0020" + sprESC + "H0020"; // pos
+                    PrintData += sprESC + "P03" + sprESC + "L0101"; // font size
+                    PrintData += sprESC + "M"; // font id
+                    PrintData += optCmpName.Substring(0, NormalTitleLength); // data
+                    PrintData += sprESC + "V0050" + sprESC + "H0020"; // pos
+                    PrintData += sprESC + "P03" + sprESC + "L0101"; // font size
+                    PrintData += sprESC + "M"; // font id
+                    PrintData += optCmpName.Substring(NormalTitleLength);
+                }
+                else
+                {
+                    PrintData += sprESC + "V0020" + sprESC + "H0020"; // pos
+                    PrintData += sprESC + "P03" + sprESC + "L0101"; // font size
+                    PrintData += sprESC + "M"; // font id
+                    PrintData += optCmpName; // data
+                }
                 // product ID
-                PrintData += sprESC + "V0090" + sprESC + "H0010"; // pos
+                PrintData += sprESC + "V0090" + sprESC + "H0020"; // pos
                 PrintData += sprESC + "P00" + sprESC + "L0102"; // font size
                 PrintData += sprESC + "X22,"; // font id
                 PrintData += sprProdHead + optProdId; // data
                 // serial number
-                PrintData += sprESC + "V0150" + sprESC + "H0010"; // pos
+                PrintData += sprESC + "V0150" + sprESC + "H0020"; // pos
                 PrintData += sprESC + "P00" + sprESC + "L0102"; // font size
                 PrintData += sprESC + "X22,"; // font id
                 PrintData += sprSeriHead + optSerNo; // data
@@ -195,9 +205,9 @@ namespace DrvSBPL_C
                 PrintData += sprESC + "S"; // font id
                 PrintData += optCmpName; // data
                 // product ID
-                PrintData += sprESC + "V0050" + sprESC + "H0010"; // pos
-                PrintData += sprESC + "P00" + sprESC + "L0102"; // font size
-                PrintData += sprESC + "X21,"; // font id
+                PrintData += sprESC + "V0050" + sprESC + "H0020"; // pos
+                PrintData += sprESC + "P01" + sprESC + "L0204"; // font size
+                PrintData += sprESC + "U"; // font id
                 PrintData += sprProdHead + optProdId + sprSeriHead + optSerNo; // data
             }
             else
@@ -299,8 +309,17 @@ namespace DrvSBPL_C
             if (cmbLabelSize.SelectedItem.ToString() == "Normal")
             {
                 psInstitute.Text = curRow.Cells[0].Value.ToString();
-                psCompName.Text = curRow.Cells[1].Value.ToString();
-                psLocalId.Text = curRow.Cells[2].Value.ToString();
+                string curStr = curRow.Cells[1].Value.ToString();
+                if (curStr.Length > NormalTitleLength)
+                {
+                    psCompName.Text = curStr.Substring(0, NormalTitleLength);
+                    psLocalId.Text = curStr.Substring(NormalTitleLength);
+                }
+                else
+                {
+                    psCompName.Text = curStr;
+                    psLocalId.Text = "";
+                }
                 psId.Text = curRow.Cells[3].Value.ToString();
                 psSN.Text = curRow.Cells[4].Value.ToString();
                 panelSampleNormal.Visible = true;
